@@ -3,5 +3,5 @@ workflows:
    - subclass: WDL
      primaryDescriptorPath: rnaseq_wdl/rnaseq1.wdl
      testParameterFiles:
-         - rnaseq_wdl/rnaseq_inputs.json
+         - rnaseq_wdl/rnaseq_inputs_terra.json
      name: RNASeq_WDL
