@@ -4,7 +4,7 @@ workflow rnaseq
 
 	
 	input {
-		String? dir_fastq 
+		String dir_fastq 
 		Boolean Paired	= false
 		
 		}
