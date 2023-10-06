@@ -1,0 +1,20 @@
+#!/bin/bash
+# make sure there is no preexisting Docker CID file
+rm -f /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc/execution/docker_cid
+# run as in the original configuration without --rm flag (will remove later)
+docker run \
+  --cidfile /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc/execution/docker_cid \
+  -i \
+   \
+  --entrypoint /bin/bash \
+  -v /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc:/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc:delegated \
+  mohammedfarahat/rna-seq@sha256:8efa534c91c9e126847728e526985c78a2f48e6a2224ddd45d4c2b82c7a35558 /cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc/execution/script
+
+# get the return code (working even if the container was detached)
+rc=$(docker wait `cat /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc/execution/docker_cid`)
+
+# remove the container after waiting
+docker rm `cat /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc/execution/docker_cid`
+
+# return exit code
+exit $rc

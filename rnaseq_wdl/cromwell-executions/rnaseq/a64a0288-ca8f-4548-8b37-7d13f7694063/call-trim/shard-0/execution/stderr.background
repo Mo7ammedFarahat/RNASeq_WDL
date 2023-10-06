@@ -1,0 +1,17 @@
+Picked up _JAVA_OPTIONS: -Djava.io.tmpdir=/cromwell-executions/rnaseq/a64a0288-ca8f-4548-8b37-7d13f7694063/call-trim/shard-0/tmp.10d05342
+TrimmomaticSE: Started with arguments:
+ -phred33 /cromwell-executions/rnaseq/a64a0288-ca8f-4548-8b37-7d13f7694063/call-trim/shard-0/inputs/1972885663/S1.fastq.gz S1.out.fastq.gz ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+Automatically using 4 threads
+java.io.FileNotFoundException: /cromwell-executions/rnaseq/a64a0288-ca8f-4548-8b37-7d13f7694063/call-trim/shard-0/execution/TruSeq3-SE (No such file or directory)
+	at java.io.FileInputStream.open0(Native Method)
+	at java.io.FileInputStream.open(FileInputStream.java:195)
+	at java.io.FileInputStream.<init>(FileInputStream.java:138)
+	at org.usadellab.trimmomatic.fasta.FastaParser.parse(FastaParser.java:54)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.loadSequences(IlluminaClippingTrimmer.java:110)
+	at org.usadellab.trimmomatic.trim.IlluminaClippingTrimmer.makeIlluminaClippingTrimmer(IlluminaClippingTrimmer.java:71)
+	at org.usadellab.trimmomatic.trim.TrimmerFactory.makeTrimmer(TrimmerFactory.java:32)
+	at org.usadellab.trimmomatic.Trimmomatic.createTrimmers(Trimmomatic.java:59)
+	at org.usadellab.trimmomatic.TrimmomaticSE.run(TrimmomaticSE.java:318)
+	at org.usadellab.trimmomatic.Trimmomatic.main(Trimmomatic.java:85)
+Input Reads: 1000 Surviving: 998 (99.80%) Dropped: 2 (0.20%)
+TrimmomaticSE: Completed successfully

@@ -1,0 +1,37 @@
+#!/bin/bash
+
+cd /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution
+tmpDir=$(mkdir -p "/cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/tmp.67d40b73" && echo "/cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/tmp.67d40b73")
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution
+
+)
+oute347b323="${tmpDir}/out.$$" erre347b323="${tmpDir}/err.$$"
+mkfifo "$oute347b323" "$erre347b323"
+trap 'rm "$oute347b323" "$erre347b323"' EXIT
+touch '/cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution/stdout' '/cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution/stderr'
+tee '/cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution/stdout' < "$oute347b323" &
+tee '/cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution/stderr' < "$erre347b323" >&2 &
+(
+cd /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution
+
+
+fastqc /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/inputs/1972885663/S1.fastq.gz -o .
+)  > "$oute347b323" 2> "$erre347b323"
+echo $? > /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution
+sync
+
+
+)
+mv /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution/rc.tmp /cromwell-executions/rnaseq/e347b323-d0ae-420d-9c5b-e87948761c7b/call-fastqc/execution/rc

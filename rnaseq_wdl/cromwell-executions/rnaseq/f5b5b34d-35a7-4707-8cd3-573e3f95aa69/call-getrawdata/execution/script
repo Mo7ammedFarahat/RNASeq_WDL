@@ -1,0 +1,37 @@
+#!/bin/bash
+
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution
+tmpDir=$(mkdir -p "/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/tmp.93d3c237" && echo "/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/tmp.93d3c237")
+
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution
+
+)
+outf5b5b34d="${tmpDir}/out.$$" errf5b5b34d="${tmpDir}/err.$$"
+mkfifo "$outf5b5b34d" "$errf5b5b34d"
+trap 'rm "$outf5b5b34d" "$errf5b5b34d"' EXIT
+touch '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution/stdout' '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution/stderr'
+tee '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution/stdout' < "$outf5b5b34d" &
+tee '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution/stderr' < "$errf5b5b34d" >&2 &
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution
+
+
+ls /home/user08/rna-seq/rawdata/*fastq.gz > rawdatapath.txt
+)  > "$outf5b5b34d" 2> "$errf5b5b34d"
+echo $? > /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution
+sync
+
+
+)
+mv /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution/rc.tmp /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getrawdata/execution/rc

@@ -1,0 +1,43 @@
+#!/bin/bash
+
+cd /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution
+tmpDir=$(mkdir -p "/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/tmp.ed72fb67" && echo "/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/tmp.ed72fb67")
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution
+
+)
+out444fbcb8="${tmpDir}/out.$$" err444fbcb8="${tmpDir}/err.$$"
+mkfifo "$out444fbcb8" "$err444fbcb8"
+trap 'rm "$out444fbcb8" "$err444fbcb8"' EXIT
+touch '/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/stdout' '/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/stderr'
+tee '/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/stdout' < "$out444fbcb8" &
+tee '/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/stderr' < "$err444fbcb8" >&2 &
+(
+cd /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution
+
+
+java -jar /opt/Trimmomatic-0.39/trimmomatic-0.39.jar PE \
+ /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/inputs/1972885663/S1.R1.fastq.gz /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/inputs/1972885663/S1.R2.fastq.gz \
+S1.R1.out.paired.fastq.gz \
+S1.R1.out.unpaired.fastq.gz \
+S1.R2.out.paired.fastq.gz \
+S1.R2.out.unpaired.fastq.gz \
+ILLUMINACLIP:TruSeq3-PE.fa:2:30:10:2:True LEADING:3 TRAILING:3 MINLEN:36
+)  > "$out444fbcb8" 2> "$err444fbcb8"
+echo $? > /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution
+sync
+
+
+)
+mv /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/rc.tmp /cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/rc

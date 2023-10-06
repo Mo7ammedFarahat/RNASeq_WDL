@@ -1,0 +1,38 @@
+#!/bin/bash
+
+cd /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution
+tmpDir=$(mkdir -p "/cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/tmp.a5ea7128" && echo "/cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/tmp.a5ea7128")
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution
+
+)
+out37a39970="${tmpDir}/out.$$" err37a39970="${tmpDir}/err.$$"
+mkfifo "$out37a39970" "$err37a39970"
+trap 'rm "$out37a39970" "$err37a39970"' EXIT
+touch '/cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution/stdout' '/cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution/stderr'
+tee '/cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution/stdout' < "$out37a39970" &
+tee '/cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution/stderr' < "$err37a39970" >&2 &
+(
+cd /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution
+
+
+java -jar /opt/Trimmomatic-0.39/trimmomatic-0.39.jar SE -phred33 \
+ /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/inputs/1972885663/S1.R1.fastq.gz S1.R1.out.fastq.gz ILLUMINACLIP:TruSeq3-SE:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
+)  > "$out37a39970" 2> "$err37a39970"
+echo $? > /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution
+sync
+
+
+)
+mv /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution/rc.tmp /cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-trim_SE/shard-0/execution/rc

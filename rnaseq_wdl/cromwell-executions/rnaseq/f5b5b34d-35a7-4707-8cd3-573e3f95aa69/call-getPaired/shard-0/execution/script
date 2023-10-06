@@ -1,0 +1,39 @@
+#!/bin/bash
+
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution
+tmpDir=$(mkdir -p "/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/tmp.3db5223f" && echo "/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/tmp.3db5223f")
+
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution
+
+)
+outf5b5b34d="${tmpDir}/out.$$" errf5b5b34d="${tmpDir}/err.$$"
+mkfifo "$outf5b5b34d" "$errf5b5b34d"
+trap 'rm "$outf5b5b34d" "$errf5b5b34d"' EXIT
+touch '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution/stdout' '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution/stderr'
+tee '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution/stdout' < "$outf5b5b34d" &
+tee '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution/stderr' < "$errf5b5b34d" >&2 &
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution
+
+
+ls S1.R1.fastq.gz| awk -F'.' '{print $1}' > result | ls $PWD/$result*.fastq.gz  > path && \
+v1=`head -n1 path` | echo $v1 > S1.R1R1.txt && \
+v1=`tail -n1 path` | echo $v1 > S1.R1R2.txt
+)  > "$outf5b5b34d" 2> "$errf5b5b34d"
+echo $? > /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution
+sync
+
+
+)
+mv /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution/rc.tmp /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-0/execution/rc

@@ -1,0 +1,2 @@
+#!/bin/bash
+/bin/bash /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/cfd0ebae-b876-4cc3-a7ec-7951dd3b8810/call-getPaired/shard-1/execution/script

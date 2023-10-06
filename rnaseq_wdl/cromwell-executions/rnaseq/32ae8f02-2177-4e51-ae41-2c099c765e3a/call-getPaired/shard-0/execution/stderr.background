@@ -1,0 +1,1 @@
+ls: cannot access '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/32ae8f02-2177-4e51-ae41-2c099c765e3a/call-getPaired/shard-0/execution/*.fastq.gz': No such file or directory

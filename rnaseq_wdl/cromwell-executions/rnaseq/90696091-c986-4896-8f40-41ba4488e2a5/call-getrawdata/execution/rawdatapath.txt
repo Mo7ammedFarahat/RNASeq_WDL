@@ -1,0 +1,1 @@
+/home/user08/rna-seq/rawdata/S1.R1.fastq.gz

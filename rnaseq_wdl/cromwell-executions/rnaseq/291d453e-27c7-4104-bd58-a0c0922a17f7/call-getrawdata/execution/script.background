@@ -1,0 +1,3 @@
+#!/bin/bash
+'/bin/bash' '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/291d453e-27c7-4104-bd58-a0c0922a17f7/call-getrawdata/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/291d453e-27c7-4104-bd58-a0c0922a17f7/call-getrawdata/execution/rc &
+echo $!

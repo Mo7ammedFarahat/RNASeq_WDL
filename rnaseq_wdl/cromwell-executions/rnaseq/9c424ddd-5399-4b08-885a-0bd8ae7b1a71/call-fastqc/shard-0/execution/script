@@ -1,0 +1,37 @@
+#!/bin/bash
+
+cd /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution
+tmpDir=$(mkdir -p "/cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/tmp.27f3fbca" && echo "/cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/tmp.27f3fbca")
+chmod 777 "$tmpDir"
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution
+
+)
+out9c424ddd="${tmpDir}/out.$$" err9c424ddd="${tmpDir}/err.$$"
+mkfifo "$out9c424ddd" "$err9c424ddd"
+trap 'rm "$out9c424ddd" "$err9c424ddd"' EXIT
+touch '/cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution/stdout' '/cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution/stderr'
+tee '/cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution/stdout' < "$out9c424ddd" &
+tee '/cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution/stderr' < "$err9c424ddd" >&2 &
+(
+cd /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution
+
+
+fastqc /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/inputs/1972885663/S1.R1.fastq.gz -o .
+)  > "$out9c424ddd" 2> "$err9c424ddd"
+echo $? > /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution
+sync
+
+
+)
+mv /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution/rc.tmp /cromwell-executions/rnaseq/9c424ddd-5399-4b08-885a-0bd8ae7b1a71/call-fastqc/shard-0/execution/rc

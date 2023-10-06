@@ -1,0 +1,37 @@
+#!/bin/bash
+
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution
+tmpDir=$(mkdir -p "/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/tmp.ddfc4b49" && echo "/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/tmp.ddfc4b49")
+
+export _JAVA_OPTIONS=-Djava.io.tmpdir="$tmpDir"
+export TMPDIR="$tmpDir"
+export HOME="$HOME"
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution
+
+)
+out90696091="${tmpDir}/out.$$" err90696091="${tmpDir}/err.$$"
+mkfifo "$out90696091" "$err90696091"
+trap 'rm "$out90696091" "$err90696091"' EXIT
+touch '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution/stdout' '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution/stderr'
+tee '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution/stdout' < "$out90696091" &
+tee '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution/stderr' < "$err90696091" >&2 &
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution
+
+
+ls /home/user08/rna-seq/rawdata/*fastq.gz > rawdatapath.txt
+)  > "$out90696091" 2> "$err90696091"
+echo $? > /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution/rc.tmp
+(
+# add a .file in every empty directory to facilitate directory delocalization on the cloud
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution
+find . -type d -exec sh -c '[ -z "$(ls -A '"'"'{}'"'"')" ] && touch '"'"'{}'"'"'/.file' \;
+)
+(
+cd /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution
+sync
+
+
+)
+mv /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution/rc.tmp /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/90696091-c986-4896-8f40-41ba4488e2a5/call-getrawdata/execution/rc

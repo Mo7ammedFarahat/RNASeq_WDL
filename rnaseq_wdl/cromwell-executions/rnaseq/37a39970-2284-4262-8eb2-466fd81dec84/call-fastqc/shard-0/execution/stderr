@@ -1,0 +1,3 @@
+Picked up _JAVA_OPTIONS: -Djava.io.tmpdir=/cromwell-executions/rnaseq/37a39970-2284-4262-8eb2-466fd81dec84/call-fastqc/shard-0/tmp.b0cc349e
+Started analysis of S1.R1.fastq.gz
+Approx 100% complete for S1.R1.fastq.gz

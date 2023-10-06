@@ -1,0 +1,20 @@
+#!/bin/bash
+# make sure there is no preexisting Docker CID file
+rm -f /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/545ab7c2-e43c-4554-8133-196511b03922/call-trim_SE/shard-1/execution/docker_cid
+# run as in the original configuration without --rm flag (will remove later)
+docker run \
+  --cidfile /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/545ab7c2-e43c-4554-8133-196511b03922/call-trim_SE/shard-1/execution/docker_cid \
+  -i \
+   \
+  --entrypoint /bin/bash \
+  -v /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/545ab7c2-e43c-4554-8133-196511b03922/call-trim_SE/shard-1:/cromwell-executions/rnaseq/545ab7c2-e43c-4554-8133-196511b03922/call-trim_SE/shard-1:delegated \
+  mohammedfarahat/rna-seq@sha256:8e6cf9b4ff2023d22ffa371403829bff2139716aafbacdde73c4a6582b9c1fb1 /cromwell-executions/rnaseq/545ab7c2-e43c-4554-8133-196511b03922/call-trim_SE/shard-1/execution/script
+
+# get the return code (working even if the container was detached)
+rc=$(docker wait `cat /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/545ab7c2-e43c-4554-8133-196511b03922/call-trim_SE/shard-1/execution/docker_cid`)
+
+# remove the container after waiting
+docker rm `cat /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/545ab7c2-e43c-4554-8133-196511b03922/call-trim_SE/shard-1/execution/docker_cid`
+
+# return exit code
+exit $rc
