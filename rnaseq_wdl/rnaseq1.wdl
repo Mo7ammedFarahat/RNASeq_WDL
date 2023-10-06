@@ -4,7 +4,7 @@ workflow rnaseq
 
 	
 	input {
-		String dir_fastq = "/home/user08/rna-seq/rawdata"
+		String? dir_fastq 
 		Boolean Paired	= false
 		
 		}
