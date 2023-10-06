@@ -1,2 +1,0 @@
-/home/user08/rna-seq/rawdata/S1.fastq.gz
-/home/user08/rna-seq/rawdata/S2.fastq.gz

@@ -1,4 +1,0 @@
-/home/user08/rna-seq/rawdata/s1.r1.fq
-/home/user08/rna-seq/rawdata/s1.r2.fq
-/home/user08/rna-seq/rawdata/s2.r1.fq
-/home/user08/rna-seq/rawdata/s2.r2.fq

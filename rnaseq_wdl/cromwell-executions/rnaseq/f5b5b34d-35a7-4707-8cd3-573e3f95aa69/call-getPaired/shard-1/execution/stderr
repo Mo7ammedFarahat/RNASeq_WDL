@@ -1,2 +1,0 @@
-ls: cannot access 'S1.R2.fastq.gz': No such file or directory
-ls: cannot access '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/f5b5b34d-35a7-4707-8cd3-573e3f95aa69/call-getPaired/shard-1/execution/*.fastq.gz': No such file or directory

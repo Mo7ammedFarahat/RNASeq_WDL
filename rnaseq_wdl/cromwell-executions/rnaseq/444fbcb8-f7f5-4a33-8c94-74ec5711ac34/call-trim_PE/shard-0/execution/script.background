@@ -1,3 +1,0 @@
-#!/bin/bash
-'/bin/bash' '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/444fbcb8-f7f5-4a33-8c94-74ec5711ac34/call-trim_PE/shard-0/execution/rc &
-echo $!

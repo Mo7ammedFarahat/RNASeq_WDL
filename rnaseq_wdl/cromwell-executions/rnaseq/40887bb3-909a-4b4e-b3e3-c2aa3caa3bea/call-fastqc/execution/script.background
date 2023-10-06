@@ -1,3 +1,0 @@
-#!/bin/bash
-'/bin/bash' '/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc/execution/script.submit' < /dev/null || { rc=$?; if [ "$rc" -gt "128" ]; then echo $rc; else echo -1; fi } > /home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/40887bb3-909a-4b4e-b3e3-c2aa3caa3bea/call-fastqc/execution/rc &
-echo $!

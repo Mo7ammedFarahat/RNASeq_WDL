@@ -1,2 +1,0 @@
-/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/cb7ba52c-6a54-4e4d-8737-efe1133a04a5/call-getrawdata/execution/script: command substitution: line 23: syntax error near unexpected token `('
-/home/user08/rna-seq/rnaseq_wdl/cromwell-executions/rnaseq/cb7ba52c-6a54-4e4d-8737-efe1133a04a5/call-getrawdata/execution/script: command substitution: line 23: `ls String (optional, default = "/home/user08/rna-seq/rawdata")/*.fq'
