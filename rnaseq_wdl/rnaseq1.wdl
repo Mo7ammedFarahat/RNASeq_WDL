@@ -86,7 +86,9 @@ command <<<
 ls ~{path}/*fastq.gz > rawdatapath.txt
 
 >>>
-
+runtime{
+docker: "mohammedfarahat/rna-seq:fastqc"
+}
 output{
 Array[File]paths=read_lines("rawdatapath.txt")
 }
